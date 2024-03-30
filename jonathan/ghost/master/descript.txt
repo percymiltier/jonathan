@@ -1,0 +1,16 @@
+charset,UTF-8
+
+name,Jonathan
+type,ghost
+
+shiori,yaya.dll
+
+craftman,mothyonline
+craftmanurl,https://lifeinthe4thdimension.neocities.org/
+
+sakura.name,Jonathan
+kero.name,Empty
+
+icon,icon.ico
+
+sstp.allowunspecifiedsend,0

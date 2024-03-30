@@ -1,0 +1,110 @@
+OnFirstBoot
+{
+	stroke = 0
+	affection = 0
+	kittymode = false
+	poke = 0
+	LastTalk = ""
+	
+	"\0\s[0]Ah! A fellow samurai are you? You're name is %(username)?\w8 I'm pleased to make your accquaintance."
+}
+
+OnInitialize
+{
+	//If you want some variables to reset on boot, put them here. This event will happen even if you add other events like OnGhostChanged
+	//OnInitialize is a NOTIFY event! That means it cannot return scripts. This event is only meant for things like variable changes. See this page on Ukadoc for more info: https://ukagakadreamteam.github.io/ukadoc/manual/spec_shiori3.html
+	
+	//If you add new variables in updates, I recommend initializing them like so:
+	//if !ISVAR("NewVariable"); NewVariable = 0
+	//This means that it will only set the new variable if the user doesn't already have it, so that their variables don't get overwritten
+	
+	if reference0 != "reload" //For things you want to reset EXCEPT when just reloading; a convenience for you the dev, basically
+	{
+		LastTalk = ""
+	}
+}
+
+OnBoot
+{
+	_temp = SHIORI3FW.UserBirthday
+	_user_birthday = "%(_temp[1])/%(_temp[2])" //M/D, if you want it D/M you can switch it around
+	_today = "%(month)/%(day)" //Again, switch this around if using D/M
+	_yearsSinceRelease = year-2013
+	
+	if hour >= 5 && hour <= 8
+	{	timeOfDay = "earlymorning"	}
+	elseif hour >= 9 && hour <= 11
+	{	timeOfDay = "morning"	}
+	elseif hour >= 12 && hour <= 14
+	{	timeOfDay = "lunch"	}
+	elseif hour >= 15 && hour <= 17
+	{	timeOfDay = "afternoon"	}
+	elseif hour >= 18 && hour <= 20
+	{	timeOfDay = "evening"	}
+	elseif hour >= 21 && hour <= 24
+	{ timeOfDay = "latenight"	}
+	else
+	{ timeOfDay = "midnight" }
+	
+	"\1\s[10]\0\s[0]"
+	--
+	if _today == _user_birthday // birthday dialogue
+	{
+		"\0\s[0]Happy birthday %(username)! Please, take this time to relax, I'll handle your duties for the day."
+	}
+	elseif _today == "1/1" // new years dialogue
+	{
+		"\0\s[0]It's a new year %(username), let us hope this is as good as the last! Make a wish, but don't tell anyone! It won't come true if you do."
+	}
+	elseif _today == "5/23" // smt iv anniv. dialogue
+	{
+		"\0\s[0]Today is %(_today), Shin Megami Tensei IV released on this day in 2013, %(_yearsSinceRelease) years ago."
+	}
+	else // normal day
+	{
+		if timeslot == "earlymorning"
+		{
+			"\0\s[0]Up early, are we not?"
+			"\0\s[3]Ngh... \w8\s[1]Forgive me, I was still sleeping.\w8\s[0]"
+		}
+		elseif timeslot = "morning"
+		{
+			"\0\s[0]Good morning %(username)!"
+			"Rise and shine %(username)!"
+		}
+		elseif timeslot == "lunch" || timeslot = "afternoon"
+		{
+			"\0\s[0]Hello %(username)!"
+			"\0\s[0]Hello there %(username), how nice of you to stop by."
+			"\0\s[0]Ah, %(username), I missed you!"
+			"\0\s[0]Where have you been? I'll be lonely if you leave me by myself all the time."
+		}
+		elseif timeslot = "evening"
+		{
+			"\0\s[0]Good evening %(username)!"
+			"\0\s[0]It's a lovely night, it's nice to see you again!"
+		}
+		elseif timeslot = "latenight"
+		{
+			"\0\s[5]It is getting terribly late, we ought to rest soon %(username)."
+			"\0\s[13]Awake at this hour?\w8\s[0]"
+			"\0\s[1]I will sleep well tonight.\w8\s[0]"
+		}
+		else
+		{
+			"\0\s[5]Goodness, it is midnight."
+			"\0\s[3]Waking me at this hour, you should know better."
+			"\0\s[101]Guh...\w8\s[4]Please, forget you saw that.\w8\s[8] Please, knock before barginig in like that again."
+		}
+	}
+	
+}
+
+OnClose
+{
+	"\0\s[0]Goodbye!"
+	"\0\s[0]See you~"
+	"\0\s[0]Goodbye %(username), see you soon!"
+	--
+	"\w8\-" //This is what makes the ghost close (after a short pause), do not remove the \- , and MAKE SURE you don't use a \e before this point or it won't work
+}

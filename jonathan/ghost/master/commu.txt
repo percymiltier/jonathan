@@ -1,0 +1,44 @@
+OnCommunicate
+ {
+	if reference0 == "user" || reference0 == "User"
+ 	{
+		//---- answering the user
+ 		ReplyToUser
+	}
+ 	else
+	{
+ 		//---- answering another ghost
+		ReplyToGhost
+ 	}
+}
+
+ReplyToUser
+{
+	TalkToUser
+}
+
+
+
+// do not edit above this line
+
+ReplyToGhost
+{
+       if AlreadyResponded == 1 //checking the status of the flag
+       {
+             AlreadyResponded = 0 //Resetting the flag.
+
+             res_reference0 = "" //this will clear the value so the conversation will end
+
+             "\0\s[6]It's friendly enough, \s[8]but I wouldn't lower my guard."
+       }
+       else
+       {
+             res_reference0 = reference0 //targeting the other ghost.
+			 
+             AlreadyResponded = 1 //setting a flag to say they've responded once already
+
+             {
+				"\0\s[8]Something else has appeared, a demon or a human?\e"
+             }
+       }
+}

@@ -1,0 +1,79 @@
+SakuraMenuGreetings : nonoverlap
+{
+	"Can I help you with something?"
+	"%(username), do you require assistence?"
+}
+
+//Because there is an all modifier here, you don't need to write -- between menu options
+OnSakuraMenu : all
+{
+	"\0\s[0]\b2\![set,autoscroll,disable]"
+	if SHIORI3FW.Eventid == "OnMouseDoubleClick"; SakuraMenuGreetings //The check here is so they won't comment if you click the back button. Remove if you prefer
+	
+	"\n\n\_q"
+	
+	"\![*]\q[Talk to me,OnAiTalk]"
+	if LastTalk != ""; "  \![*]\q[Say that again,OnLastTalk]"
+	"\n\n"
+	
+	"\![*]\q[Change talk rate,OnTalkRateMenu]\n\n"
+	
+	"\![*]\q[Say something silly kitty,OnKittyMode]\n\n"
+	
+	"\![*]\q[Poke count,OnPokeCount]\n\n"
+	
+	"\![*]\q[Nevermind,blank]"	
+}
+
+OnLastTalk
+{
+	LastTalk
+}
+
+OnTalkRateMenu : all
+{	
+	//This is just setting up a label, you may need to add to it or tweak it if you change what rates are available
+	_talkrate = "Off"
+	if aitalkinterval == 30; _talkrate = "30 seconds"
+	elseif aitalkinterval == 60; _talkrate = "1 minute"
+	elseif aitalkinterval == 180; _talkrate = "3 minutes"
+	elseif aitalkinterval == 300; _talkrate = "5 minutes"
+	elseif aitalkinterval == 600; _talkrate = "10 minutes"
+	
+	"\0\s[0]\b2\![set,autoscroll,disable]\_q"
+	"Current interval: %(_talkrate)\n\n"
+	
+	"\![*]\q[Off,OnTalkRateChange,0]\n"
+	"\![*]\q[30 seconds,OnTalkRateChange,30]\n"
+	"\![*]\q[1 minute,OnTalkRateChange,60]\n"
+	"\![*]\q[3 minutes,OnTalkRateChange,180]\n"
+	"\![*]\q[5 minutes,OnTalkRateChange,300]\n"
+	"\![*]\q[10 minutes,OnTalkRateChange,600]\n"
+	"\n"
+	"\![*]\q[Back,OnSakuraMenu]  \![*]\q[Nevermind,blank]"
+}
+
+OnTalkRateChange
+{
+	aitalkinterval = TOINT(reference0)
+}
+
+OnKittyMode
+{
+	"\0\s[204]In all candor,\w8 I am a cat.\e"
+	"\0\s[200]This really is so embarassing...\e"
+	"\0\s[201]Is this really necessary?\e"
+	"\0\s[200]I hope the others do not see me like this...\e"
+	"\0\s[204]This floor is so deliciously warm... meow~\e"
+	"\0\s[204]Nyan~\e"
+	"\0\s[204]Meeowww~\e"
+	"\0\s[203]This outfit... it is most outrageous!\e"
+	"\0\s[201]This is too much...\e"
+	"\0\s[201]You have some strange preferences %(username).\e"
+	"\0\s[200]Is this the kind of thing you like?\e"
+}
+
+OnPokeCount
+{
+	"\0\s[5]I've been poked %(poke) times..."
+}

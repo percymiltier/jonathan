@@ -1,0 +1,62 @@
+OnMouseDoubleClick
+ {
+	if reference5 == 0
+	{
+	 	if reference3 == 0
+		{
+		MouseDoubleClickSakura
+		}
+		else
+		{
+ 		MouseDoubleClickKero
+		}
+	}
+ }
+
+MouseDoubleClickSakura
+ {
+ 	if reference4 == "head"
+	{
+		"\0\s[12]Ouch!\e"
+		"\0\s[12]Please don't poke me!\e"
+		"\0\s[12]Eek!\e"
+		--
+		poke++
+	}
+	else
+ 	{
+		OpenSakuraMenu
+	}
+ }
+
+OnMouseMove
+{
+	if reference4 != ""
+	{
+		stroke++
+		
+		if stroke % 40 == 0
+		{
+			if reference3 == 0; OnMouseMove.Sakura
+			else; OnMouseMove.Kero
+		}
+	}
+}
+
+OnMouseMove.Sakura
+{
+	if reference4 == "head"
+	{
+		"\0\s[4]Eep-\e"
+		"\0\s[13]Petting?\e"
+		"\0\s[11]A little close aren't you?\e"
+		"\0\s[13]Gah!\e"
+		"\0\s[5]You're going to mess up my hair...\e"
+		"\0\s[9]That tickles"
+	}
+}
+
+OnMouseLeaveAll
+{
+	stroke = 0
+}

@@ -1,0 +1,127 @@
+favcolors
+{
+	"sunshine yellow"
+	"sky blue"
+	"sage green"
+	"gold"
+	"cerulean"
+	"honey color"
+	"light brown"
+	"beige"
+	"periwinkle"
+	"fig purple"
+	"burgundy"
+}
+
+itemsconsumable
+{
+	"canned coffee"
+	"miso"
+	"canned juice"
+	"wine"
+	"healing water"
+	"life bead"
+	"dis-charm"
+	"dis-poison"
+	"soma"
+	"revival bead"
+	"patra stone"
+	"chakra drop"
+	"bead chain"
+	"bread and cheese"
+	"pastries"
+	"mochi"
+	"takoyaki"
+	"ochazuke"
+}
+
+// splits consumables into food, drinks, etc; for ease of writing
+drink
+{
+	"canned coffee"
+	"miso"
+	"canned juice"
+	"healing water"
+}
+
+food
+{
+	"bread and cheese"
+	"pastries"
+	"mochi"
+	"takoyaki"
+	"ochazuke"
+}
+
+magicitem
+{
+	"dis-poison"
+	"soma"
+	"life bead"
+	"revival bead"
+	"patra stone"
+	"chakra drop"
+	"bead chain"
+}
+// end of split
+
+
+
+items
+{
+	"supplies"
+	"weapons"
+	"armor"
+	"medicine"
+}
+
+clothing
+{
+	"shirt"
+	"cravat"
+	"scarf"
+	"jacket"
+}
+
+friends
+{
+	"Isabeau"
+	"Walter"
+	"Flynn"
+	"Burroughs"
+}
+
+people
+{
+	"Navarre"
+	"Abbot Hugo"
+	"K"
+	"Hope"
+}
+
+place
+{
+	"Naruku"
+	"Mikado"
+	"Lake Mikado"
+	"Tokyo"
+	"Kiccigiorgi"
+}
+
+manga
+{
+	"Fist of the North Star"
+	"Jojo's Bizarre Adventure"
+	"Demon Slayer"
+	"Ouran High School Host Club"
+	"Cardcaptor Sakura"
+	"Blue Exorcist"
+	"Hunter x Hunter"
+	"Devilman"
+	"Cutie Honey"
+	"Chainsaw Man"
+	"Uzumaki"
+	"Bungou Stray Dogs"
+	"xxxHolic"
+	"Beastars"
+}

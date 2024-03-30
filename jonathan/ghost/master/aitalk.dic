@@ -1,0 +1,79 @@
+OnAiTalk
+{
+	if CHAIN.IDName == ""
+	{
+		LastTalk = RandomTalk
+	}
+	else
+	{
+		LastTalk = ChainTalk
+	}
+	LastTalk
+}
+
+RandomTalk : nonoverlap_pool
+{
+	// silly short dialogues
+
+	"\0\s[0]I had planned on going to breakfast with the others, but \s[9]spending time here is a nice change of pace."
+	"\0\s[5]I went to the market in town to buy %(items), but I couldn't find any.\w8\s[9]\nCome with me again tomorrow to look!\e"
+	"\0\s[5]I really wish %(friends) was here too.\e"
+	"\0\s[2]The weather seems nice today, I hope it is nice for you as well.\e"
+	"\0\s[3]That Walter, where did he run off to?"
+	"\0\s[0]Isabeau tried showing me her new manga today, I think it was called %(manga)?\w8\nIt seemed...\n\w8\w8\s[3]interesting.\e"
+	"\0\s[2]Flynn is quiet, but I find his presence comforting.\e"
+	"\0\s[0]Should I ask %(friends) to come with me to town?\w8\nI want to buy %(items) but I do not wish to go by myself.\e"
+	"\0\s[3]The demons took my last %(itemsconsumable)...\w8\n*sigh*\e"
+	"\0\s[3]After our last demon encounter, I'll be happy to not go out for a while.\e"
+		"\0\s[0]I imagine you must live a more interesting life than I, \w8\s[4]admittedly I have a quite sheltered upbringing.\e"
+	"\0\s[7]My demons are a bit different."
+	"\0\s[7]Such is a Samurai's skill"
+	"\0\s[0]Burroughs, are you still here?\w8\n\n\f[italic,true]'Jonathan, how can I help you?'\f[italic,false]\w8\n\n\s[9]Oh, I just wanted to make sure you were still here.\w8\n\n\f[italic,true]'I see. Goodbye then.'\f[italic,false]\e"
+	"\0\s[0]Do you ever think about different colors for the Samurai uniforms? \w8What about %(favcolors)?\e"
+	"\0\s[3]I wanted to find a new %(clothing) in %(favcolors), but unfortunately was not able to find any in my size.\e"
+	"\0\s[0]I just used the last %(magicitem), do you have an extra?\e"
+	"\0\s[0]I think I'll have %(food) for lunch today.\e"
+	"\0\s[0]I have two %(drink),\w8 would you like one as well?\e"
+	"\0\s[3]Flynn and Walter have gone off somewhere,\w8 they cannot take anything seriously.\e"
+	"\0\s[4]Um,\w8 is there a reason for looking at me like that?\e"
+	"\0\s[0]Isabeau's new favorite thing is %(manga),\w8 do you know anything about it?\e"
+	"\0\s[3]I spilled %(drink) on my %(clothing)...\w8 So unpleasant...\e"
+	"I was thinking about getting a different color %(clothing), what about %(favcolors)?\e"
+	"\0\i[1]Hmm hmm...\e"
+	"\0\i[1]Laaa laa...\e"
+	"\0\i[1]Hu hu hu...\e"
+	"\0\s[101]Well...\w8 I went to bathe and it appears someone has stolen my uniform.\w8\s[103] Troublemakers like that should be repremanded.\e"
+	
+
+	// user directed questions
+	"\0\s[0]Have you had anything to drink lately %(username)?\w8\s[9] Here, if you haven't, please drink some water.\e"
+	"\0\s[0]%(username), how are you feeling? \w8\s[2]Remember to take breaks and rest often.\e"
+	"\0\s[0]I hope you've been sleeping well %(username),\s[3] I have not.\w8\n\s[5]While traveling it is indeed difficult to get the proper rest.\e"
+	"\0\s[0]What kinds of things do you do for fun %(username)?\![open,inputbox,OnHobbies,-1]\e"
+	"\0\s[0]Do you have a favorite food %(username)?\![open,inputbox,OnFood,-1]\e"
+	"\0\s[7]I've been training hard lately, can you tell?\e"
+	"\0\s[5]I work just as hard as the others, but I still feel like my strength doesn't compare to that of Flynn and Walter...\e"
+	"\0\s[2]I spoke to %(people) today, I'm pleased to see them doing well.\e"
+	"\0\s[0]Are we traveling to %(place) today?\e"
+
+
+	// writing longer dialogues here
+
+	"\0\s[3]Walter and I had another disagreement earlier, and he stormed off angrily.\w8\n\s[6]I just want everyone to be happy,\w8 his way of doing things is just too harsh.\s[5]\w8\nI do feel terrible though, I did not mean to fight with him.\w8 Sometimes we just don't see eye to eye.\w8\w8\n\n\s[3]I tend to get too worked up about what I believe in.\e"
+	"\0\s[2]Often when I feel worried or stressed, I say prayers to myself.\w8\s[9] It makes me feel calmer.\w8 I like feeling like there is someone else who will understand me no matter what.\e"
+
+}
+
+
+// fancy dialogues like questions or menus can go here
+OnHobbies
+{
+	hobby = reference0
+	"\0\s[0]Hmm...\w8 %(hobby) huh?\w8 Sounds interesting!\w8 You'll have to tell me more about it sometime.\e"
+}
+
+OnFood
+{
+	newFood = reference0
+	"\0\s[0]Well... %(newFood)... \0\s[9]sounds delicious!\e"
+}
